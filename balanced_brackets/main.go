@@ -74,19 +74,17 @@ func opener(brick rune) rune {
 }
 
 type stack struct {
-	items           []rune
-	currentLocation int
+	items []rune
 }
 
 func newStack() *stack {
 	return &stack{
-		items:           []rune{},
-		currentLocation: 0,
+		items: []rune{},
 	}
 }
 
 func (s *stack) peek() rune {
-	return s.items[s.currentLocation]
+	return s.items[len(s.items)-1]
 }
 
 func (s *stack) pop() (rune, error) {
@@ -94,13 +92,11 @@ func (s *stack) pop() (rune, error) {
 		return ' ', errors.New("can not pop from empty stack")
 	}
 
-	item := s.items[s.currentLocation]
+	item := s.items[len(s.items)-1]
 	s.items = s.items[:len(s.items)-1]
-	s.currentLocation--
 	return item, nil
 }
 
 func (s *stack) push(item rune) {
 	s.items = append(s.items, item)
-	s.currentLocation = len(s.items) - 1
 }
