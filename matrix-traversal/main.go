@@ -19,11 +19,6 @@ func main() {
 	}
 }
 
-type point struct {
-	x int
-	y int
-}
-
 type rec struct {
 	topx int
 	topy int
@@ -55,16 +50,16 @@ func (r *recs) pointInRecs(x, y int) bool {
 func findRecs(image [][]int) recs {
 	foundRecs := recs{r: []rec{}}
 
-	for i := 0; i < len(image); i++ {
-		for j := 0; j < len(image[i]); j++ {
-			if image[i][j] == 0 {
-				if !foundRecs.pointInRecs(j, i) {
-					width, height := size(image, i, j)
+	for yCord, row := range image {
+		for xCord, value := range row {
+			if value == 0 {
+				if !foundRecs.pointInRecs(xCord, yCord) {
+					width, height := size(image, xCord, yCord)
 					foundRecs.r = append(foundRecs.r, rec{
-						topx: j,
-						topy: i,
-						botx: j + width - 1,
-						boty: i + height - 1,
+						topx: xCord,
+						topy: yCord,
+						botx: xCord + width - 1,
+						boty: yCord + height - 1,
 					})
 				}
 			}
@@ -74,7 +69,7 @@ func findRecs(image [][]int) recs {
 	return foundRecs
 }
 
-func size(image [][]int, startY, startX int) (int, int) {
+func size(image [][]int, startX, startY int) (int, int) {
 	var width, height int
 	for i := startY; i < len(image); i++ {
 		if image[i][startX] == 0 {
