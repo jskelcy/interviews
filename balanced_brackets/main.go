@@ -2,7 +2,7 @@ package main
 
 import (
 	"bufio"
-	"errors"
+	"interview/stack"
 	"log"
 	"os"
 )
@@ -28,12 +28,12 @@ func main() {
 }
 
 func isBalanced(tower string) bool {
-	s := newStack()
+	s := stack.NewStack()
 	for _, brick := range tower {
 		if isOpener(brick) {
-			s.push(brick)
+			s.Push(brick)
 		} else {
-			nextOpenerBrick, err := s.pop()
+			nextOpenerBrick, err := s.Pop()
 			if err != nil {
 				return false
 			}
@@ -71,32 +71,4 @@ func opener(brick rune) rune {
 	default:
 		return '('
 	}
-}
-
-type stack struct {
-	items []rune
-}
-
-func newStack() *stack {
-	return &stack{
-		items: []rune{},
-	}
-}
-
-func (s *stack) peek() rune {
-	return s.items[len(s.items)-1]
-}
-
-func (s *stack) pop() (rune, error) {
-	if len(s.items) == 0 {
-		return ' ', errors.New("can not pop from empty stack")
-	}
-
-	item := s.items[len(s.items)-1]
-	s.items = s.items[:len(s.items)-1]
-	return item, nil
-}
-
-func (s *stack) push(item rune) {
-	s.items = append(s.items, item)
 }
