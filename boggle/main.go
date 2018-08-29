@@ -50,7 +50,7 @@ func findNeighbors(y, x int, used []*cell, bog *boggle) []*cell {
 	neighbors := []*cell{}
 	for _, looky := range []int{-1, 0, 1} {
 		for _, lookx := range []int{-1, 0, 1} {
-			if (y+looky > -1 && x+lookx > -1) && (y+looky < len(bog.board) && x+lookx < len(bog.board)) {
+			if onBoard(y+looky, x+lookx, bog) {
 				neighbor := bog.board[y+looky][x+lookx]
 				if !in(used, neighbor) {
 					neighbors = append(neighbors, neighbor)
@@ -60,6 +60,14 @@ func findNeighbors(y, x int, used []*cell, bog *boggle) []*cell {
 	}
 
 	return neighbors
+}
+
+func onBoard(y, x int, bog *boggle) bool {
+	if (y > -1 && x > -1) && (y < len(bog.board) && x < len(bog.board)) {
+		return true
+	}
+
+	return false
 }
 
 type cell struct {
