@@ -11,6 +11,20 @@ type LinkedList struct {
 	len  int
 }
 
+func MakeList(list []int) *Node {
+	head := &Node{}
+	currNode := head
+	for i, val := range list {
+		currNode.Value = val
+		if i < len(list)-1 {
+			currNode.Next = &Node{}
+		}
+		currNode = currNode.Next
+	}
+
+	return head
+}
+
 func NewList() *LinkedList {
 	doughnut := &Node{}
 
