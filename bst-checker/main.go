@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"interview/bst/tree"
 )
 
@@ -43,6 +42,5 @@ func checkBST(n *tree.Node) (int, int, bool) {
 		newLargest = largestRight
 	}
 
-	fmt.Printf("at node %d, smallest: %d, largest: %d\n", n.Value, newSmallest, newLargest)
 	return newSmallest, newLargest, true
 }

@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"interview/bst/tree"
 )
 
@@ -14,5 +15,18 @@ func main() {
 		t.Insert(num)
 	}
 
-	tree.InOrderPrint(t)
+	// tree.InOrderPrint(t)
+
+	nums = []int{3, 9, 20, 15, 23}
+	t = tree.Tree{
+		Root:   &tree.Node{Value: 9},
+		Height: 1,
+	}
+
+	for _, num := range nums {
+		t.Insert(num)
+	}
+	for _, row := range tree.LevelOrder(t) {
+		fmt.Printf("%v\n", row)
+	}
 }
