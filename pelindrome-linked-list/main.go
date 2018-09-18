@@ -6,26 +6,12 @@ import (
 )
 
 func main() {
-	listEven := makeList([]int{1, 2, 3, 4, 4, 3, 2, 1})
-	listOdd := makeList([]int{1, 2, 3, 4, 5, 4, 3, 2, 1})
-	listBad := makeList([]int{1, 8, 3, 4, 5, 4, 3, 2, 1})
+	listEven := intlist.MakeList([]int{1, 2, 3, 4, 4, 3, 2, 1})
+	listOdd := intlist.MakeList([]int{1, 2, 3, 4, 5, 4, 3, 2, 1})
+	listBad := intlist.MakeList([]int{1, 8, 3, 4, 5, 4, 3, 2, 1})
 	fmt.Println(palindromeLinkedList(listEven))
 	fmt.Println(palindromeLinkedList(listOdd))
 	fmt.Println(palindromeLinkedList(listBad))
-}
-
-func makeList(list []int) *intlist.Node {
-	head := &intlist.Node{}
-	currNode := head
-	for i, val := range list {
-		currNode.Value = val
-		if i < len(list)-1 {
-			currNode.Next = &intlist.Node{}
-		}
-		currNode = currNode.Next
-	}
-
-	return head
 }
 
 func palindromeLinkedList(head *intlist.Node) bool {
