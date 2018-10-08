@@ -40,7 +40,8 @@ func partitionList(head *intlist.Node, pivot int) *intlist.Node {
 	}
 
 	for i := 1; i <= times+1; i++ {
-		if runner.Value < pivot {
+		// if value is less then pivot just move runner along
+		if runner.Value <= pivot {
 			prev = runner
 			runner = runner.Next
 			continue
