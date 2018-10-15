@@ -2,7 +2,8 @@ package main
 
 import (
 	"fmt"
-	intlist "interview/linked-list/int-list"
+
+	intlist "github.com/jskelcy/interview/linked-list/int-list"
 )
 
 func main() {

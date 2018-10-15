@@ -2,7 +2,8 @@ package main
 
 import (
 	"fmt"
-	"interview/bst/tree"
+
+	"github.com/jskelcy/interview/bst/tree"
 )
 
 func main() {

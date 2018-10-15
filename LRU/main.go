@@ -2,7 +2,8 @@ package main
 
 import (
 	"fmt"
-	"interview/LRU/lru"
+
+	"github.com/jskelcy/interview/LRU/lru"
 )
 
 func main() {
